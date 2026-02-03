@@ -39,40 +39,30 @@
                 </div>
 
                 <div
-                    class="flex flex-col items-center justify-center gap-0 mb-8 w-full"
+                    class="flex items-center justify-center gap-2 sm:gap-8 md:gap-16 lg:gap-24 mb-8 w-full"
                     id="nombre-container"
                 >
-                    <div
-                        class="flex items-center justify-center gap-2 sm:gap-8 md:gap-16 lg:gap-24 w-full"
-                    >
-                        <div id="mariposa-izq" class="flex-shrink-0">
-                            <img
-                                src="/gif/MariposaRoja.gif"
-                                alt="Mariposa izquierda"
-                                class="w-12 h-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain scale-x-[-1]"
-                            />
-                        </div>
-
-                        <h2
-                            class="font-great-vibes text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-[#C3A1D9] tracking-wide flex-shrink min-w-0"
-                            id="nombre-typewriter"
-                        >
-                        </h2>
-
-                        <div id="mariposa-der" class="flex-shrink-0">
-                            <img
-                                src="/gif/MariposaRoja.gif"
-                                alt="Mariposa derecha"
-                                class="w-12 h-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain"
-                            />
-                        </div>
+                    <div id="mariposa-izq" class="flex-shrink-0">
+                        <img
+                            src="/gif/MariposaRoja.gif"
+                            alt="Mariposa izquierda"
+                            class="w-12 h-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain scale-x-[-1]"
+                        />
                     </div>
 
-                    <h3
-                        class="font-great-vibes text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#C3A1D9] tracking-wide mt-2"
-                        id="apellidos-typewriter"
+                    <h2
+                        class="font-great-vibes text-6xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#C3A1D9] tracking-wide flex-shrink min-w-0"
+                        id="nombre-typewriter"
                     >
-                    </h3>
+                    </h2>
+
+                    <div id="mariposa-der" class="flex-shrink-0">
+                        <img
+                            src="/gif/MariposaRoja.gif"
+                            alt="Mariposa derecha"
+                            class="w-12 h-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain"
+                        />
+                    </div>
                 </div>
 
                 <div
@@ -228,14 +218,13 @@
             { opacity: 1, x: 0, duration: 1.5, ease: "power2.out", delay: 0.7 },
         );
 
-        // NOMBRE - Efecto cascada letra por letra (primera fila)
+        // NOMBRE - Efecto cascada letra por letra
         function nombreCascadaElegante() {
-            const nombre = "Valentina";
-            const contenedorNombre =
-                document.getElementById("nombre-typewriter");
-            if (!contenedorNombre) return;
+            const texto = "Valentina";
+            const contenedor = document.getElementById("nombre-typewriter");
+            if (!contenedor) return;
 
-            contenedorNombre.innerHTML = nombre
+            contenedor.innerHTML = texto
                 .split("")
                 .map(
                     (letra, index) =>
@@ -249,7 +238,7 @@
                 )
                 .join("");
 
-            gsap.to("#nombre-typewriter .letra-cascada", {
+            gsap.to(".letra-cascada", {
                 opacity: 1,
                 y: 0,
                 scale: 1,
@@ -257,41 +246,6 @@
                 duration: 0.8,
                 ease: "back.out(1.6)",
                 stagger: { each: 0.12, from: "start" },
-            });
-        }
-
-        // APELLIDOS - Efecto cascada letra por letra (segunda fila)
-        function apellidosCascadaElegante() {
-            const apellidos = "Caero Peña";
-            const contenedorApellidos = document.getElementById(
-                "apellidos-typewriter",
-            );
-            if (!contenedorApellidos) return;
-
-            contenedorApellidos.innerHTML = apellidos
-                .split("")
-                .map(
-                    (letra, index) =>
-                        `<span class="letra-cascada-apellido" style="
-                            --i: ${index};
-                            opacity: 0; 
-                            display: inline-block; 
-                            transform: translateY(30px) scale(0.8);
-                            filter: blur(2px);
-                        ">${letra === " " ? "&nbsp;" : letra}</span>`,
-                )
-                .join("");
-
-            // Los apellidos empiezan a animarse después del nombre
-            gsap.to("#apellidos-typewriter .letra-cascada-apellido", {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                filter: "blur(0px)",
-                duration: 0.8,
-                ease: "back.out(1.6)",
-                stagger: { each: 0.12, from: "start" },
-                delay: 1.2, // Empieza después de que termine el nombre
             });
         }
 
@@ -303,7 +257,6 @@
         );
 
         nombreCascadaElegante();
-        apellidosCascadaElegante();
         console.log("Animaciones listas!");
     });
 </script>
@@ -315,15 +268,13 @@
         opacity: 1 !important;
     }
 
-    .letra-cascada,
-    .letra-cascada-apellido {
+    .letra-cascada {
         transition: all 0.3s ease;
         will-change: transform, opacity, filter;
         position: relative;
     }
 
-    .letra-cascada:hover,
-    .letra-cascada-apellido:hover {
+    .letra-cascada:hover {
         transform: translateY(-3px) scale(1.05) !important;
         text-shadow: 0 0 12px rgba(78, 104, 75, 0.5) !important;
     }
