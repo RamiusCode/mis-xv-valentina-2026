@@ -31,7 +31,7 @@
                     id="titulo-container"
                 >
                     <h1
-                        class="font-crimson text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#BFC1C2] font-bold tracking-wider"
+                        class="font-crimson text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-[#C9A24D] font-bold tracking-wider"
                         id="titulo"
                     >
                         MIS XV AÑOS
@@ -39,37 +39,39 @@
                 </div>
 
                 <div
-                    class="flex flex-col items-center justify-center gap-0 mb-8 w-full"
+                    class="flex flex-col items-center justify-center gap-2 mb-8 w-full"
                     id="nombre-container"
                 >
+                    <!-- Nombre con velas a los lados -->
                     <div
-                        class="flex items-center justify-center gap-2 sm:gap-8 md:gap-16 lg:gap-24 w-full"
+                        class="flex items-center justify-between w-full max-w-3xl mx-auto px-4"
                     >
-                        <div id="mariposa-izq" class="flex-shrink-0">
+                        <div id="vela-izq" class="flex-shrink-0">
                             <img
-                                src="/gif/MariposaRoja.gif"
-                                alt="Mariposa izquierda"
-                                class="w-12 h-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain scale-x-[-1]"
+                                src="/imagenes/velas.png"
+                                alt="Vela izquierda"
+                                class="w-12 h-auto sm:w-14 md:w-16 lg:w-20 object-contain"
                             />
                         </div>
 
                         <h2
-                            class="font-great-vibes text-6xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-[#C3A1D9] tracking-wide flex-shrink min-w-0"
+                            class="font-great-vibes text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-[#7B5BA6] tracking-wide whitespace-nowrap"
                             id="nombre-typewriter"
                         >
                         </h2>
 
-                        <div id="mariposa-der" class="flex-shrink-0">
+                        <div id="vela-der" class="flex-shrink-0">
                             <img
-                                src="/gif/MariposaRoja.gif"
-                                alt="Mariposa derecha"
-                                class="w-12 h-auto sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 object-contain"
+                                src="/imagenes/velas.png"
+                                alt="Vela derecha"
+                                class="w-12 h-auto sm:w-14 md:w-16 lg:w-20 object-contain scale-x-[-1]"
                             />
                         </div>
                     </div>
 
+                    <!-- Apellidos abajo -->
                     <h3
-                        class="font-great-vibes text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#C3A1D9] tracking-wide mt-2"
+                        class="font-great-vibes text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-[#7B5BA6] tracking-wide mt-2"
                         id="apellidos-typewriter"
                     >
                     </h3>
@@ -112,7 +114,7 @@
     document.addEventListener("DOMContentLoaded", () => {
         console.log("Iniciando animaciones...");
 
-        // FLORES ARRIBA - Sin animación para mantener opacidad completa
+        // FLORES ARRIBA - Sin animación
         gsap.set("#flores-arriba", { clearProps: "all" });
 
         // CORONA - Zoom in
@@ -135,91 +137,49 @@
             { opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.5 },
         );
 
-        // MARIPOSA IZQUIERDA - Llega de la izquierda
+        // VELA IZQUIERDA - Entrada desde la izquierda (SIN animación continua)
         gsap.fromTo(
-            "#mariposa-izq",
-            { opacity: 0, x: -50, y: 20, rotation: -15, scale: 0.8 },
+            "#vela-izq",
+            { opacity: 0, x: -50, scale: 0.8 },
             {
                 opacity: 1,
                 x: 0,
-                y: 0,
-                rotation: 0,
                 scale: 1,
-                duration: 4,
+                duration: 1.2,
                 ease: "power2.out",
+                delay: 0.8,
             },
         );
 
-        // MARIPOSA IZQUIERDA - Flotado con movimiento elegante
-        gsap.to("#mariposa-izq", {
-            y: -12,
-            rotation: 3,
-            duration: 3,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: 1.5,
-        });
-
-        gsap.to("#mariposa-izq", {
-            x: 10,
-            duration: 4,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: 1.5,
-        });
-
-        // MARIPOSA DERECHA - Llega de la derecha
+        // VELA DERECHA - Entrada desde la derecha (SIN animación continua)
         gsap.fromTo(
-            "#mariposa-der",
-            { opacity: 0, x: 50, y: 20, rotation: 15, scale: 0.8 },
+            "#vela-der",
+            { opacity: 0, x: 50, scale: 0.8 },
             {
                 opacity: 1,
                 x: 0,
-                y: 0,
-                rotation: 0,
                 scale: 1,
-                duration: 4,
+                duration: 1.2,
                 ease: "power2.out",
+                delay: 0.8,
             },
         );
 
-        // MARIPOSA DERECHA - Flotado con movimiento elegante
-        gsap.to("#mariposa-der", {
-            y: -12,
-            rotation: -3,
-            duration: 3,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: 1.5,
-        });
-
-        gsap.to("#mariposa-der", {
-            x: -10,
-            duration: 4,
-            ease: "sine.inOut",
-            yoyo: true,
-            repeat: -1,
-            delay: 1.5,
-        });
-
-        // FLORES IZQUIERDA - Salen de la izquierda
+        // FLORES IZQUIERDA - Entrada
         gsap.fromTo(
             "#flores-foto-izq",
             { opacity: 0, x: -150 },
             { opacity: 1, x: 0, duration: 1.5, ease: "power2.out", delay: 0.7 },
         );
 
-        // FLORES DERECHA - Salen de la derecha
+        // FLORES DERECHA - Entrada
         gsap.fromTo(
             "#flores-foto-der",
             { opacity: 0, x: 150 },
             { opacity: 1, x: 0, duration: 1.5, ease: "power2.out", delay: 0.7 },
         );
 
-        // NOMBRE - Efecto cascada letra por letra (primera fila)
+        // NOMBRE - Efecto cascada letra por letra
         function nombreCascadaElegante() {
             const nombre = "Valentina";
             const contenedorNombre =
@@ -248,10 +208,11 @@
                 duration: 0.8,
                 ease: "back.out(1.6)",
                 stagger: { each: 0.12, from: "start" },
+                delay: 1,
             });
         }
 
-        // APELLIDOS - Efecto cascada letra por letra (segunda fila)
+        // APELLIDOS - Efecto cascada letra por letra
         function apellidosCascadaElegante() {
             const apellidos = "Caero Peña";
             const contenedorApellidos = document.getElementById(
@@ -273,7 +234,6 @@
                 )
                 .join("");
 
-            // Los apellidos empiezan a animarse después del nombre
             gsap.to("#apellidos-typewriter .letra-cascada-apellido", {
                 opacity: 1,
                 y: 0,
@@ -282,15 +242,22 @@
                 duration: 0.8,
                 ease: "back.out(1.6)",
                 stagger: { each: 0.12, from: "start" },
-                delay: 1.2, // Empieza después de que termine el nombre
+                delay: 2,
             });
         }
 
-        // IMAGEN PRINCIPAL - Fade in con zoom
+        // IMAGEN PRINCIPAL - Fade in
         gsap.fromTo(
             "#foto-container",
             { opacity: 0, scale: 0.8, y: 30 },
-            { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: "power2.out" },
+            {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power2.out",
+                delay: 0.5,
+            },
         );
 
         nombreCascadaElegante();
@@ -316,6 +283,6 @@
     .letra-cascada:hover,
     .letra-cascada-apellido:hover {
         transform: translateY(-3px) scale(1.05) !important;
-        text-shadow: 0 0 12px rgba(78, 104, 75, 0.5) !important;
+        text-shadow: 0 0 12px rgba(123, 91, 166, 0.5) !important;
     }
 </style>
